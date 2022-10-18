@@ -58,7 +58,7 @@ services:
     restart: unless-stopped
     
   appflowy:
-    image: appflowyio/appflowy_client:latest
+    image: appflowyio/appflowy_client:main
     container_name: appflowyio
     environment:
       TZ: $TZ
