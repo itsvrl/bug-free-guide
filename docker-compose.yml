@@ -3,8 +3,6 @@ version: "3.3"
 networks:
   speedtest:
     external: false
-  documentation:
-    external: true
   
 volumes:
   speedtest_data:
@@ -12,8 +10,6 @@ volumes:
   etc-pihole:
     driver: local
   etc-dnsmasq.d:
-    driver: local
-  appflowy-data:
     driver: local
 
 services:
@@ -55,19 +51,4 @@ services:
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
       - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
-    restart: unless-stopped
-    
-  appflowy:
-    image: appflowyio/appflowy_client:main
-    container_name: appflowyio
-    environment:
-      TZ: $TZ
-      DISPLAY: $DISPLAY # 'set a secure password here or it will be random'
-    # Volumes store your data between container upgrades
-    volumes:
-      - $HOME/.Xauthority:/root/.Xauthority:rw
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - /dev/dri:/dev/dri
-      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
-      - appflowy-data:/home/appflowy
     restart: unless-stopped
