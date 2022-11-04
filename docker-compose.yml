@@ -15,7 +15,7 @@ services:
     networks:
       - speedtest
     ports:
-      - "8765:8765"
+      - "8765:80"
     volumes:
         - speedtest_data:/config
     environment:
